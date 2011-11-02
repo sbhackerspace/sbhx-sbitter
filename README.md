@@ -1,5 +1,5 @@
 SBitter
-#######
+=======
 
 SBitter is SBHX's Twitter clone.  We're writing many such clones using
 various languages and frameworks for comparison.
@@ -29,4 +29,4 @@ some ideas for how each app should be scored:
 
 * Scalability (performance under load v. not)
 
-* Memory use (per request both under load v. not)
+* Memory use (per request, both under load v. not)
