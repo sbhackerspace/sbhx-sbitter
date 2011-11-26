@@ -8,10 +8,10 @@
     {% endblock %}
   </head>
   <body>
-    <li style="float:right;">
-    {% if user.is_authenticated %}Hello, {{ user.username }}!
-    {% else %}<a href="/login">Log in</a>, yo
-    </li>
+    {% if user.is_authenticated %}
+    <li style="float:right;">Hello, {{ user.username }}!</li>
+    {% else %}
+    <li style="float:right;"><a href="/login">Log in</a>, yo</li>
     {% endif %}
 
     <h1>SBitter</h1>
