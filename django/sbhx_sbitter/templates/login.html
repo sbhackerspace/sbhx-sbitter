@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" id="login_form" action="/login/">
+    <h4>Log In</h4>
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{ username }}" id="username" size="15" />
+  </div>
+  <br />
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" value="{{ password }}" id="password" size="15" />
+  </div>
+  <br />
+  
+  {% csrf_token %}
+  <input type="submit" value="Log In" />
+</form>
+
+{% endblock %}

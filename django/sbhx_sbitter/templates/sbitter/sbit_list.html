@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul>
+{% for sbit in sbits %}
+<li><strong>SBat by</strong> {{ sbit.user.username }}</li>
+<li>{{ sbit.msg }}</li>
+<li><strong>SBat on</strong> {{ sbit.pub_date|date:"Y-m-d @ H:i" }}</li>
+<br />
+{% endfor %}
+</ul>
+
+{% endblock %}
