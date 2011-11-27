@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" id="users_sbit" action="/{{ user.username }}/">
+    <h4></h4>
+  <div>
+    <label for="users_sbit">SBit</label>
+    <input type="text" name="users_sbit" value="{{ users_sbit }}" id="users_sbit" size="15" />
+  </div>
+  <br />
+  {% csrf_token %}
+  <input type="submit" value="Post Sbit" />
+</form>
+
+<br />
+<br />
+
+<ul>
+{% for sbit in sbits %}
+<li><strong>SBat by</strong> {{ sbit.user.username }}</li>
+<li>{{ sbit.msg }}</li>
+<li><strong>SBat on</strong> {{ sbit.pub_date|date:"Y-m-d @ H:i" }}</li>
+<br />
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -44,3 +44,17 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Come back soon!')
     return HttpResponseRedirect('/')
+
+def userspage(request, username):    
+    sbits = SBit.objects.filter(user__username=username).order_by('-pub_date')
+    return render(request, 'users.html', {'sbits': sbits})
+
+
+@login_required
+def post_userspage(request, username): 
+    users_sbit = forms.CharField().clean(request.POST['users_sbit'])
+    return HttpResponse(users_sbit)
+    sbit = SBit(user=request.user, msg=users_sbit)
+    sbit.save()
+    return HttpResponseRedirect('/' + username)
+
