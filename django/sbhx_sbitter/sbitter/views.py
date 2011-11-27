@@ -46,17 +46,18 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
+@login_required
+def post_sbit(request, username):
+    if username != request.user.username:
+        HttpResponseRedirect('/') # Imposter!
+
+    msg = forms.CharField().clean(request.POST['msg'])
+    # return HttpResponse('msg == ' + msg)
+    sbit = SBit(user=request.user, msg=msg)
+    sbit.save()
+    return HttpResponseRedirect('/' + username)
+
+
 def profile(request, username):    
     sbits = SBit.objects.filter(user__username=username).order_by('-pub_date')
     return render(request, 'profile.html', {'sbits': sbits})
-
-
-@login_required
-def post_sbit(request, username):
-    return HttpResponse('username == ' + username)
-    #msg = forms.CharField().clean(request.POST['sbit'])
-    #return HttpResponse('msg == ' + msg)
-    # sbit = SBit(user=request.user, msg=msg)
-    # sbit.save()
-    # return HttpResponseRedirect('/' + username)
-

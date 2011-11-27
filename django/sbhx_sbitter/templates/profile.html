@@ -3,8 +3,8 @@
 {% block content %}
 
 <form method="post" id="sbit_form" action="/post_sbit/{{ user.username }}/">
-  <label for="sbit">SBit</label>
-  <input type="text" name="sbit" value="{{ sbit }}" id="sbit" size="15" />
+  <label for="msg">SBit</label>
+  <input type="text" name="msg" value="{{ msg }}" id="msg" size="15" />
   <br />
   {% csrf_token %}
   <input type="submit" value="SBit" />
