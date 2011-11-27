@@ -9,8 +9,9 @@ urlpatterns = patterns('sbhx_sbitter.sbitter.views',
     url(r'^$', 'index', name='index_view'),
     url(r'^login/$', 'login_view', name='login_view'),
     url(r'^logout/$', 'logout_view', name='logout_view'),
-    url(r'^(?P<username>\w+)', 'userspage', name='userspage'),
-    url(r'^(?P<username>\w+)', 'post_userspage', name='post_userspage'),
+    url(r'^post_sbit/(?P<username>\w+)', 'post_sbit', name='post_sbit'),
+    url(r'^(?P<username>\w+)', 'profile', name='profile'), # MUST GO LAST!
+
     # url(r'^sbhx_sbitter/', include('sbhx_sbitter.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

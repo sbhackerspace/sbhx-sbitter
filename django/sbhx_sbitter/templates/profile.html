@@ -2,15 +2,12 @@
 
 {% block content %}
 
-<form method="post" id="users_sbit" action="/{{ user.username }}/">
-    <h4></h4>
-  <div>
-    <label for="users_sbit">SBit</label>
-    <input type="text" name="users_sbit" value="{{ users_sbit }}" id="users_sbit" size="15" />
-  </div>
+<form method="post" id="sbit_form" action="/post_sbit/{{ user.username }}/">
+  <label for="sbit">SBit</label>
+  <input type="text" name="sbit" value="{{ sbit }}" id="sbit" size="15" />
   <br />
   {% csrf_token %}
-  <input type="submit" value="Post Sbit" />
+  <input type="submit" value="SBit" />
 </form>
 
 <br />
