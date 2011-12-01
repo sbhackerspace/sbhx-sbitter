@@ -15,7 +15,7 @@ from sbhx_sbitter.sbitter.models import *
 
 @login_required
 def index(request):
-    sbits = SBit.objects.filter(user=request.user).order_by('-pub_date')
+    sbits = SBit.objects.all().order_by('-pub_date')
     return render(request, 'sbitter/sbit_list.html', {'sbits': sbits})
 
 
@@ -31,7 +31,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/' + username)
         else:
             messages.warning(request, 'Wrong username or password')
             return HttpResponseRedirect('/')
@@ -61,3 +61,20 @@ def post_sbit(request, username):
 def profile(request, username):    
     sbits = SBit.objects.filter(user__username=username).order_by('-pub_date')
     return render(request, 'profile.html', {'sbits': sbits})
+
+
+def signup(request):
+    if request.method == 'GET':
+        return render(request, 'signup.html')
+
+    elif request.method == 'POST':
+        newuser = User(username=forms.CharField().clean(request.POST['newuser']))
+        newpassword = forms.CharField().clean(request.POST['newpassword'])
+        #newuser = User(username=newuser)
+        newuser.set_password(newpassword)
+        newuser.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        return HttpResponseRedirect('/')
+

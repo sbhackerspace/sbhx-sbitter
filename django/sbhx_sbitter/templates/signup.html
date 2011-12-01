@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" id="signup_form" action="/signup/">
+    <h4>Sign Up</h4>
+  <div>
+    <label for="newuser">Username</label>
+    <input type="text" name="newuser" value="{{ newuser }}" id="newuser" size="15" />
+  </div>
+  <br />
+  <div>
+    <label for="newpassword">Password</label>
+    <input type="password" name="newpassword" value="{{ newpassword }}" id="newpassword" size="15" />
+  </div>
+  <br />
+  
+  {% csrf_token %}
+  <input type="submit" value="Sign Up" />
+</form>
+
+{% endblock %}

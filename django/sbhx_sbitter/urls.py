@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('sbhx_sbitter.sbitter.views',
     # Examples:
     url(r'^$', 'index', name='index_view'),
+    url(r'^signup/$', 'signup', name='signup'),
     url(r'^login/$', 'login_view', name='login_view'),
     url(r'^logout/$', 'logout_view', name='logout_view'),
     url(r'^post_sbit/(?P<username>\w+)', 'post_sbit', name='post_sbit'),
