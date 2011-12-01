@@ -36,8 +36,9 @@ def post_sbit(request, username):
     return HttpResponseRedirect('/' + username)
 
 
-def profile(request, username):    
-    sbits = SBit.objects.filter(user__username=username).order_by('-pub_date')
+@login_required
+def profile(request):
+    sbits = SBit.objects.filter(user=request.user).order_by('-pub_date')
     return render(request, 'profile.html', {'sbits': sbits})
 
 

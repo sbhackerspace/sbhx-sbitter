@@ -12,9 +12,9 @@ urlpatterns = patterns('sbhx_sbitter.sbitter.views',
     # url(r'^login/$', 'login_view', name='login_view'),
     url(r'^logout/$', 'logout_view', name='logout_view'),
     url(r'^post_sbit/(?P<username>\w+)', 'post_sbit', name='post_sbit'),
-    url(r'^(?P<username>\w+)', 'profile', name='profile'), # MUST GO LAST!
     url(r'^accounts/login/$', login, kwargs=dict(template_name='login.html'),
         name='sitelogin'),
+    url(r'^accounts/profile/$', 'profile', name='profile'),
 
     # url(r'^sbhx_sbitter/', include('sbhx_sbitter.foo.urls')),
 
