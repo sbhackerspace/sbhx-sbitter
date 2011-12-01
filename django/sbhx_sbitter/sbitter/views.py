@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 #from django.core.context_processors import csrf
 #from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 from django.template import loader, RequestContext
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -25,16 +25,12 @@ def logout_view(request):
 
 
 @login_required
-def post_sbit(request, username):
-    if username != request.user.username:
-        HttpResponseRedirect('/') # Imposter!
-
-    msg = forms.CharField().clean(request.POST['msg'])
+def post_sbit(request):
+    msg = request.POST['msg']
     # return HttpResponse('msg == ' + msg)
     sbit = SBit(user=request.user, msg=msg)
     sbit.save()
-    return HttpResponseRedirect('/' + username)
-
+    return redirect('profile')
 
 @login_required
 def profile(request):
