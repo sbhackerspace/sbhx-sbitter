@@ -18,28 +18,6 @@ def index(request):
     sbits = SBit.objects.all().order_by('-pub_date')
     return render(request, 'sbitter/sbit_list.html', {'sbits': sbits})
 
-
-def login_view(request):
-    if request.method == 'GET':
-        return render(request, 'login.html')
-
-    elif request.method == 'POST':
-        username = forms.CharField().clean(request.POST['username'])
-        password = forms.CharField().clean(request.POST['password'])
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect('/' + username)
-        else:
-            messages.warning(request, 'Wrong username or password')
-            return HttpResponseRedirect('/')
-            
-    else:
-        return HttpResponseRedirect('/')
-    
-
 def logout_view(request):
     logout(request)
     messages.success(request, 'Come back soon!')
