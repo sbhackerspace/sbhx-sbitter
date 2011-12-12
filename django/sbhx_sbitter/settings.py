@@ -152,4 +152,4 @@ LOGGING = {
 }
 
 # Used by @login_required decorator
-LOGIN_URL = '/login/'
+# LOGIN_URL = '/login/'

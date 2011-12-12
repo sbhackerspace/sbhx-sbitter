@@ -2,12 +2,15 @@
 
 {% block content %}
 
-<form method="post" id="sbit_form" action="{% url post_sbit %}">
-  <label for="msg">SBit</label>
-  <input type="text" name="msg" value="{{ msg }}" id="msg" size="15" />
+<form method="post" id="users_sbit" action="/{{ user.username }}/">
+    <h4></h4>
+  <div>
+    <label for="users_sbit">SBit</label>
+    <input type="text" name="users_sbit" value="{{ users_sbit }}" id="users_sbit" size="15" />
+  </div>
   <br />
   {% csrf_token %}
-  <input type="submit" value="SBit" />
+  <input type="submit" value="Post Sbit" />
 </form>
 
 <br />

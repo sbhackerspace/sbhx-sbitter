@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 #from django.core.context_processors import csrf
 #from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 from django.template import loader, RequestContext
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -15,30 +15,8 @@ from sbhx_sbitter.sbitter.models import *
 
 @login_required
 def index(request):
-    sbits = SBit.objects.filter(user=request.user).order_by('-pub_date')
+    sbits = SBit.objects.all().order_by('-pub_date')
     return render(request, 'sbitter/sbit_list.html', {'sbits': sbits})
-
-
-def login_view(request):
-    if request.method == 'GET':
-        return render(request, 'login.html')
-
-    elif request.method == 'POST':
-        username = forms.CharField().clean(request.POST['username'])
-        password = forms.CharField().clean(request.POST['password'])
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect('/')
-        else:
-            messages.warning(request, 'Wrong username or password')
-            return HttpResponseRedirect('/')
-            
-    else:
-        return HttpResponseRedirect('/')
-    
 
 def logout_view(request):
     logout(request)
@@ -47,17 +25,31 @@ def logout_view(request):
 
 
 @login_required
-def post_sbit(request, username):
-    if username != request.user.username:
-        HttpResponseRedirect('/') # Imposter!
-
-    msg = forms.CharField().clean(request.POST['msg'])
+def post_sbit(request):
+    msg = request.POST['msg']
     # return HttpResponse('msg == ' + msg)
     sbit = SBit(user=request.user, msg=msg)
     sbit.save()
-    return HttpResponseRedirect('/' + username)
+    return redirect('profile')
 
-
-def profile(request, username):    
-    sbits = SBit.objects.filter(user__username=username).order_by('-pub_date')
+@login_required
+def profile(request):
+    sbits = SBit.objects.filter(user=request.user).order_by('-pub_date')
     return render(request, 'profile.html', {'sbits': sbits})
+
+
+def signup(request):
+    if request.method == 'GET':
+        return render(request, 'signup.html')
+
+    elif request.method == 'POST':
+        newuser = User(username=forms.CharField().clean(request.POST['newuser']))
+        newpassword = forms.CharField().clean(request.POST['newpassword'])
+        #newuser = User(username=newuser)
+        newuser.set_password(newpassword)
+        newuser.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        return HttpResponseRedirect('/')
+
