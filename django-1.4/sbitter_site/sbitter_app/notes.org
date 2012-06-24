@@ -1,0 +1,5 @@
+* 2012.06.13
+* Classes
+** A class is a type of object
+** Says what 
+* 

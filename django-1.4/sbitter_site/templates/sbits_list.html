@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ greeting }}</h2>
+<br />
+<h3>{{ sbitter.user.username }} said...</h3>
+<ul>
+{% for sbit in sbits %}
+    <li>{{ sbit.message }}</li>
+{% endfor %}
+</ul>
+<br />
+{{ scraped_html }}
+
+{% endblock %}
