@@ -38,7 +38,9 @@ v. JavaScript/Node_ v. Clojure/Erlang/Scala/etc rated on speed and
 scalability.
 
 
-[UPDATE: 2014.05.27] Entrants so far:
+**[UPDATE: 2014.05.27]**
+
+Entrants so far:
 
 * [Go + MongoDB](https://github.com/openwebengineering/sbitter#results)
   version by [@elimisteve](https://github.com/elimisteve)
