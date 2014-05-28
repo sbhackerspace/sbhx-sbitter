@@ -38,6 +38,17 @@ v. JavaScript/Node_ v. Clojure/Erlang/Scala/etc rated on speed and
 scalability.
 
 
+[UPDATE: 2014.05.27] Entrants so far:
+
+* [Go + MongoDB](https://github.com/openwebengineering/sbitter#results)
+  version by [@elimisteve](https://github.com/elimisteve)
+
+* [Django 1.4 + Postgres](https://github.com/openwebengineering/sbitter/tree/master/django/sbitter_postgres)
+  version by [@ajvb](https://github.com/ajvb)
+
+* _Add yours here!_
+
+
 Federatedness
 -------------
 
